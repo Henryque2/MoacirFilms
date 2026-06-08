@@ -234,12 +234,46 @@ export const MOVIES = [
     image: 'https://m.media-amazon.com/images/M/MV5BYzFjMzNjOTktNDBlNy00YWZhLWExYTctZDcxNDA4OWVhOTJjXkEyXkFqcGc@._V1_.jpg',
     backdrop: 'https://recreio.com.br/wp-content/uploads/2025/03/um-filme-minecraft-poster-capa.jpg',
     color: '#13a12f',
-    featured: true,
+    featured: false,
     videoUrl: 'https://youtu.be/3IVPHxs4NoM?si=QF4lvrPG93PCt_bU',
+  },
+  {
+    id: 15,
+    title: 'Uma Pistola para Djeca',
+    genre: ['Faroeste', 'Comédia', 'Ação', 'Drama'],
+    year: 1970,
+    rating: 6.6,
+    duration: '90 min',
+    director: 'Ary Fernandes',
+    cast: ['Amácio Mazzaropi', 'Nello Pinheiro', 'Patrícia Mayo', 'Rogério Câmara', 'Yaratan', 'Linda Fernandes'],
+    synopsis:
+      'Gumercindo é um homem simples que vê a filha engravidar do filho de seu patrão. Decidido a exigir que seu neto tenha um pai, ele se une a vizinhos para buscar justiça à sua maneira.',
+    image: 'https://m.media-amazon.com/images/M/MV5BYWJlNjM1NDQtZDlhYy00NWUyLWIwYWQtYWNkY2U5MDM0YmQxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
+    backdrop: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaOmMV4zTTPP0snJQ3FtPT11L4D94MtaUMOsgwJTdi-AFlGUutjNGnQ3u3EfAKApduCaGRtz_VYWt4UcEpHv-zernXfcPdi9rF0XY8kpfYrZBl-HTib4L9HRzMH14N9fL6APRaC5QDhHMq/w1200-h630-p-k-no-nu/uma_pistola_para_djeca_cartaz_medio.jpg',
+    color: '#675107',
+    featured: true,
+    videoUrl: 'https://youtu.be/cO2ozbjc-PM?si=T0yrKRjFB1UTHR-4',
+  },
+  {
+    id: 16,
+    title: 'Eles Vivem',
+    genre: ['Terror', 'Sci-Fi', 'Ação', 'Thriller', 'Drama'],
+    year: 1988,
+    rating: 7.2,
+    duration: '93 min',
+    director: 'John Carpenter',
+    cast: ['Keith David', 'Roddy Piper', 'Meg Foster', 'Larry Franco', 'Peter Jason'],
+    synopsis:
+      'John Nada é um homem desempregado que anda pelas ruas da cidade procurando algo para fazer. Um dia, ele encontra um óculos de sol e, por meio deles, consegue enxergar a face verdadeira das pessoas.',
+    image: 'https://m.media-amazon.com/images/S/pv-target-images/593aa5a42adb6ffed060c9dd517785fa1532090879205eb6568d1c4b5973e019.jpg',
+    backdrop: 'https://cantodosclassicos.com/wp-content/uploads/2017/06/22062017-eles-vivem-3.jpg',
+    color: '#585858',
+    featured: true,
+    videoUrl: 'https://youtu.be/c9EfHz-uxRQ?si=l6f5dmVmXFUwUbL1',
   },
 ];
 
-export const CATEGORIES = ['Todos', 'Sci-Fi', 'Drama', 'Horror', 'Romance', 'Biografia', 'Crime', 'Ação', 'Animação', 'Comédia', 'Aventura', 'Fantasia', 'Guerra', 'História', 'Thriller'];
+export const CATEGORIES = ['Todos', 'Sci-Fi', 'Drama', 'Horror', 'Romance', 'Biografia', 'Crime', 'Ação', 'Animação', 'Comédia', 'Aventura', 'Fantasia', 'Guerra', 'História', 'Thriller', 'Faroeste'];
 export const getFeaturedMovies = () => {
   const list = MOVIES.filter((m) => m.featured);
   return list.length > 0 ? list : [MOVIES[0]];
