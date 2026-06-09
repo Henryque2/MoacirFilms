@@ -50,7 +50,7 @@ npm start        # Menu interativo para escolher plataforma
 ## 📁 Estrutura de Arquivos
 
 ```
-MovieApp/
+MoacirFilms/
 ├── App.js                              # Entry point — navegação, providers, BackHandler
 ├── app.json                            # Configuração do Expo (nome, ícone, plataformas)
 ├── babel.config.js                     # Configuração do Babel
