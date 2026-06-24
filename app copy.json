@@ -5,22 +5,39 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
+    "icon": "./assets/icon.png",
     "splash": {
-      "backgroundColor": "#0a0a0f"
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000010"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "package": "com.moacir.moacirfilms",
       "adaptiveIcon": {
-        "backgroundColor": "#0a0a0f"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000010"
       }
     },
     "web": {
       "bundler": "metro",
-      "backgroundColor": "#0a0a0f"
+      "backgroundColor": "#0a0a0f",
+      "favicon": "./assets/favicon.png"
     },
-    "platforms": ["ios", "android", "web"]
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "ae1a5b87-0da6-4da5-93de-76df59af5fa7"
+      }
+    }
   }
 }

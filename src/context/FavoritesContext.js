@@ -1,17 +1,32 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import { Platform } from 'react-native';
+import * as storage from '../storage';
 
 const FavoritesContext = createContext(null);
 
+const FAVORITES_KEY = '@cineverse_favorites';
+
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
+  const [loaded, setLoaded] = useState(Platform.OS === 'web');
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const favs = await storage.getItem(FAVORITES_KEY);
+        if (favs) setFavorites(favs);
+      } catch {}
+      setLoaded(true);
+    };
+    load();
+  }, []);
 
   const toggleFavorite = useCallback((movie) => {
     setFavorites((prev) => {
       const exists = prev.find((m) => m.id === movie.id);
-      if (exists) {
-        return prev.filter((m) => m.id !== movie.id);
-      }
-      return [...prev, movie];
+      const next = exists ? prev.filter((m) => m.id !== movie.id) : [...prev, movie];
+      storage.setItem(FAVORITES_KEY, next);
+      return next;
     });
   }, []);
 
@@ -21,7 +36,7 @@ export const FavoritesProvider = ({ children }) => {
   );
 
   return (
-    <FavoritesContext.Provider value={{ favorites, toggleFavorite, isFavorite }}>
+    <FavoritesContext.Provider value={{ favorites, toggleFavorite, isFavorite, loaded }}>
       {children}
     </FavoritesContext.Provider>
   );

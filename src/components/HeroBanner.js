@@ -9,12 +9,14 @@ import {
   Animated,
 } from 'react-native';
 import { useFavorites } from '../context/FavoritesContext';
+import { useTransition } from '../context/TransitionContext';
 
 const SLIDE_INTERVAL = 6000; // ms entre cada troca
 const FADE_DURATION = 700;   // ms da transição de fade
 
 const HeroBanner = ({ movies, onPress, onPlay }) => {
   const { toggleFavorite, isFavorite } = useFavorites();
+  const { expand } = useTransition();
   const { width, height } = useWindowDimensions();
   const isMobile = width < 768;
   const bannerHeight = isMobile ? height * 0.55 : height * 0.7;
@@ -191,7 +193,7 @@ const HeroBanner = ({ movies, onPress, onPlay }) => {
 
           <TouchableOpacity
             style={styles.infoBtn}
-            onPress={() => onPress(movie)}
+            onPress={() => { const { width: w, height: h } = Dimensions.get('window'); expand({ x: w*0.1, y: h*0.2, width: w*0.8, height: h*0.5 }, movie, () => onPress(movie)); }}
             activeOpacity={0.8}
           >
             <Text style={styles.infoBtnText}>ℹ  Detalhes</Text>

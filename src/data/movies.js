@@ -271,6 +271,40 @@ export const MOVIES = [
     featured: true,
     videoUrl: 'https://youtu.be/c9EfHz-uxRQ?si=l6f5dmVmXFUwUbL1',
   },
+  {
+    id: 17,
+    title: 'Comer, Rezar, Amar',
+    genre: ['Romance', 'Comédia', 'Drama'],
+    year: 2010,
+    rating: 5.9,
+    duration: '133 min',
+    director: 'Ryan Murphy',
+    cast: ['Julia Roberts', 'Javier Bardem', 'James Franco', 'Richard Jenkins', 'Billy Crudup', 'Hadi Subiyanto'],
+    synopsis:
+      'Liz Gilbert pensa que ela tinha tudo que queria na vida: uma casa, um marido e uma carreira de sucesso. Porém, recém-divorciada e de frente para um momento de mudança, ela se sente confusa sobre o que é importante em sua vida. Ousando sair da sua zona de conforto, Liz embarca em uma busca de autodescoberta que a leva à Itália, à Índia e a Bali.',
+    image: 'https://br.web.img3.acsta.net/medias/nmedia/18/87/32/87/19874367.jpg',
+    backdrop: 'https://media.gazetadopovo.com.br/2010/09/5a6543f4f1d0c34ea4c6629c1add90fa-gpMedium.jpg',
+    color: '#e3bc7c',
+    featured: true,
+    videoUrl: 'https://youtu.be/cji7pUWhBi8?si=_Zq6li12e1R-_YfV',
+  },
+  {
+    id: 18,
+    title: 'Entrelinhas Pontilhadas',
+    genre: ['Animação', 'Comédia', 'Drama'],
+    year: 2021,
+    rating: 8.5,
+    duration: '120 min',
+    director: 'Zerocalcare',
+    cast: ['Zerocalcare', 'Paolo Vivio', 'Chiara Gioncardi', 'Veronica Puccio', 'Valerio Mastandrea'],
+    synopsis:
+      'Um cartunista em Roma com o seu tatu de consciência reflete sobre o seu caminho na vida e um amor futuro enquanto ele e os seus amigos viajam para fora da cidade.',
+    image: 'https://static.wikia.nocookie.net/dublagem/images/e/e5/Entrelinhas_Pontilhadas_%28infobox%29.png/revision/latest?cb=20260329212353&path-prefix=pt-br',
+    backdrop: 'https://www.planocritico.com/wp-content/uploads/2021/12/entrelinhas_pontilhadas_plano_critico.jpg',
+    color: '#ea7629',
+    featured: true,
+    videoUrl: 'https://youtu.be/aT7XzkO_CmM?si=esk5Ld3br5jMxpS8',
+  },
 ];
 
 export const CATEGORIES = ['Todos', 'Sci-Fi', 'Drama', 'Horror', 'Romance', 'Biografia', 'Crime', 'Ação', 'Animação', 'Comédia', 'Aventura', 'Fantasia', 'Guerra', 'História', 'Thriller', 'Faroeste'];

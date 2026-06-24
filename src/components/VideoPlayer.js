@@ -10,6 +10,7 @@ import {
   Animated,
   Linking,
 } from 'react-native';
+import { Video, ResizeMode } from 'expo-av';
 
 // ─── Extrai o ID do YouTube de qualquer formato de URL ───────────────────────
 const extractYouTubeId = (url) => {
@@ -33,7 +34,7 @@ const YouTubeWebEmbed = ({ youtubeId, playerHeight }) => (
     <iframe
       width="100%"
       height="100%"
-      src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+      src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1`}
       title="YouTube video player"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -58,7 +59,7 @@ const YouTubeMobileRedirect = ({ youtubeId, playerHeight, title, onClose }) => {
       } else {
         await Linking.openURL(webUrl);
       }
-      onClose(); // fecha o modal após abrir
+      onClose();
     } catch {
       await Linking.openURL(webUrl);
       onClose();
@@ -108,7 +109,6 @@ const DirectWebPlayer = ({ videoUrl, playerHeight }) => {
 
 // ─── Vídeo direto no mobile via expo-av ──────────────────────────────────────
 const DirectMobilePlayer = ({ videoUrl, playerHeight }) => {
-  const { Video, ResizeMode } = require('expo-av');
   const videoRef = useRef(null);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(false);
@@ -152,7 +152,7 @@ const ErrorBox = ({ playerHeight }) => (
 );
 
 // ─── Modal principal ──────────────────────────────────────────────────────────
-const VideoPlayer = ({ visible, onClose, videoUrl, title }) => {
+const VideoPlayer = ({ visible, onClose, videoUrl, title, movie }) => {
   const { width } = useWindowDimensions();
   const isMobile = width < 768;
   const playerWidth = isMobile ? width : Math.min(width * 0.85, 900);
@@ -174,8 +174,6 @@ const VideoPlayer = ({ visible, onClose, videoUrl, title }) => {
 
   const renderPlayer = () => {
     if (isYT) {
-      // Web: iframe funciona perfeitamente
-      // Mobile: YouTube bloqueia WebView (erro 153) → redireciona para o app/browser
       return Platform.OS === 'web'
         ? <YouTubeWebEmbed youtubeId={youtubeId} playerHeight={playerHeight} />
         : <YouTubeMobileRedirect
