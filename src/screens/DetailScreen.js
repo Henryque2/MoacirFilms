@@ -9,6 +9,7 @@ import {
   useWindowDimensions,
   Animated,
   Platform,
+  Share,
 } from 'react-native';
 import { useFavorites } from '../context/FavoritesContext';
 import { useScrollContext } from '../context/ScrollContext';
@@ -16,6 +17,29 @@ import { useScrollContext } from '../context/ScrollContext';
 const DetailScreen = ({ movie, onBack, onPlayMovie }) => {
   const { toggleFavorite, isFavorite } = useFavorites();
   const { handleScroll } = useScrollContext();
+
+
+  const handleShare = async () => {
+    const text = `🎬 ${movie.title} (${movie.year})\n⭐ ${movie.rating} | ${movie.duration}\n🎭 ${movie.genre.join(', ')}\n\n${movie.synopsis}\n\n▶ Trailer: ${movie.videoUrl}`;
+    try {
+      if (Platform.OS === 'web') {
+        if (navigator?.share) {
+          await navigator.share({ title: movie.title, text });
+        } else {
+          await navigator.clipboard.writeText(text);
+          alert('Copiado para a área de transferência!');
+        }
+      } else if (Platform.OS === 'ios') {
+        await Share.share({
+          title: movie.title,
+          message: `🎬 ${movie.title} (${movie.year})\n⭐ ${movie.rating} | ${movie.duration}\n🎭 ${movie.genre.join(', ')}\n\n${movie.synopsis}`,
+          url: movie.videoUrl,
+        });
+      } else {
+        await Share.share({ title: movie.title, message: text });
+      }
+    } catch (e) {}
+  };
   const { width, height } = useWindowDimensions();
   const isMobile = width < 768;
   const favorited = isFavorite(movie.id);
@@ -113,9 +137,8 @@ const DetailScreen = ({ movie, onBack, onPlayMovie }) => {
             </Text>
           </TouchableOpacity>
         </View>
-
-        {/* linha 2: Compartilhar — full width no mobile */}
-        <TouchableOpacity style={styles.shareBtn} activeOpacity={0.8}>
+        {/* linha 2: Compartilhar */}
+        <TouchableOpacity style={styles.shareBtn} activeOpacity={0.8} onPress={handleShare}>
           <Text style={styles.shareBtnText}>↗  Compartilhar</Text>
         </TouchableOpacity>
 
@@ -358,6 +381,7 @@ const styles = StyleSheet.create({
     color: '#ff6b7a',
   },
   shareBtn: {
+    marginBottom: 28,
     backgroundColor: 'rgba(255,255,255,0.06)',
     paddingHorizontal: 18,
     paddingVertical: 12,
@@ -366,7 +390,6 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.1)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 28,
   },
   shareBtnText: {
     color: 'rgba(255,255,255,0.6)',
